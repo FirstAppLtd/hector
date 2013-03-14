@@ -5,6 +5,7 @@ import static me.prettyprint.hector.api.ddl.ComparatorType.BYTESTYPE;
 import static me.prettyprint.hector.api.ddl.ComparatorType.INTEGERTYPE;
 import static me.prettyprint.hector.api.ddl.ComparatorType.LEXICALUUIDTYPE;
 import static me.prettyprint.hector.api.ddl.ComparatorType.LONGTYPE;
+import static me.prettyprint.hector.api.ddl.ComparatorType.DOUBLETYPE;
 import static me.prettyprint.hector.api.ddl.ComparatorType.TIMEUUIDTYPE;
 import static me.prettyprint.hector.api.ddl.ComparatorType.UTF8TYPE;
 import static me.prettyprint.hector.api.ddl.ComparatorType.UUIDTYPE;
@@ -23,6 +24,7 @@ import java.util.Map;
 import me.prettyprint.cassandra.serializers.AsciiSerializer;
 import me.prettyprint.cassandra.serializers.BigIntegerSerializer;
 import me.prettyprint.cassandra.serializers.ByteBufferSerializer;
+import me.prettyprint.cassandra.serializers.DoubleSerializer;
 import me.prettyprint.cassandra.serializers.LongSerializer;
 import me.prettyprint.cassandra.serializers.SerializerTypeInferer;
 import me.prettyprint.cassandra.serializers.StringSerializer;
@@ -85,6 +87,8 @@ public abstract class AbstractComposite extends AbstractList<Object> implements
           ByteBufferSerializer.get().getComparatorType().getTypeName())
       .put(LongSerializer.class,
           LongSerializer.get().getComparatorType().getTypeName())
+      .put(DoubleSerializer.class,
+          DoubleSerializer.get().getComparatorType().getTypeName())
       .put(StringSerializer.class,
           StringSerializer.get().getComparatorType().getTypeName())
       .put(UUIDSerializer.class,
@@ -95,6 +99,7 @@ public abstract class AbstractComposite extends AbstractList<Object> implements
       .put(BigIntegerSerializer.class, BigIntegerSerializer.get())
       .put(ByteBufferSerializer.class, ByteBufferSerializer.get())
       .put(LongSerializer.class, LongSerializer.get())
+      .put(DoubleSerializer.class, DoubleSerializer.get())
       .put(StringSerializer.class, StringSerializer.get())
       .put(UUIDSerializer.class, UUIDSerializer.get()).build();
 
@@ -104,6 +109,7 @@ public abstract class AbstractComposite extends AbstractList<Object> implements
       .put((byte) 'i', INTEGERTYPE.getTypeName())
       .put((byte) 'x', LEXICALUUIDTYPE.getTypeName())
       .put((byte) 'l', LONGTYPE.getTypeName())
+      .put((byte) 'd', DOUBLETYPE.getTypeName())
       .put((byte) 't', TIMEUUIDTYPE.getTypeName())
       .put((byte) 's', UTF8TYPE.getTypeName())
       .put((byte) 'u', UUIDTYPE.getTypeName()).build();
